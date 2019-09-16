@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include "helper_functions.h"
+#include <random>
 
 struct Particle {
   int id;
@@ -26,6 +27,18 @@ struct Particle {
 
 
 class ParticleFilter {  
+
+  // Number of particles to draw
+  int num_particles; 
+  
+  // Flag, if filter is initialized
+  bool is_initialized;
+  
+  // Vector of weights of all particles
+  std::vector<double> weights; 
+
+  std::default_random_engine gen;
+
  public:
   // Constructor
   // @param num_particles Number of particles
@@ -111,15 +124,6 @@ class ParticleFilter {
   // Set of current particles
   std::vector<Particle> particles;
 
- private:
-  // Number of particles to draw
-  int num_particles; 
-  
-  // Flag, if filter is initialized
-  bool is_initialized;
-  
-  // Vector of weights of all particles
-  std::vector<double> weights; 
 };
 
 #endif  // PARTICLE_FILTER_H_
